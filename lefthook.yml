@@ -1,0 +1,14 @@
+pre-commit:
+  parallel: true
+  commands:
+    lint:
+      glob: '*.{js,ts,json}'
+      run: npx biome check --apply {staged_files}
+    types:
+      glob: '*.{ts}'
+      run: npx tsc --noEmit
+
+commit-msg:
+  commands:
+    lint-commit-message:
+      run: npx commitlint --edit {1}
